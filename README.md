@@ -1,0 +1,2 @@
+# HabitBite
+HabitBite provides personalized nutrition using Mifflin-St Jeor calculations for user profiles/goals. Users log ingredients via USDA API (gram precision), tracking macros in diaries. Dashboard shows interactive weekly graphs with history. Dietitians manage approvals/goals, admins oversee users.
