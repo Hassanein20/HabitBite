@@ -1,0 +1,44 @@
+.Screen {
+  background-image: url("../../Assets/Services.webp");
+  background-position: center;
+  background-size: cover;
+  height: calc(100vh ) !important;
+  width: 100vw !important;
+  padding-top: 80px;
+}
+
+@media (max-width: 576px) {
+  .Content {
+    width: 45vw !important;
+  }
+  .image {
+    margin-right: 25vw !important;
+  }
+  .column {
+    margin-left: 50vw;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .Content {
+    width: 45vw !important;
+  }
+  .image {
+    margin-right: 25vw !important;
+  }
+  .column {
+    margin-left: 48vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .Content {
+    width: 45vw !important;
+  }
+  .image {
+    margin-right: 25vw !important;
+  }
+  .column {
+    margin-left: 45vw;
+  }
+}

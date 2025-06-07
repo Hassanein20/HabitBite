@@ -1,0 +1,26 @@
+.Icard {
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.Icard:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+@media (max-width: 576px) {
+  .Icard {
+    width: 30vw !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .Icard {
+    width: 25vw !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1400px) {
+  .Icard {
+    width: 20vw !important;
+  }
+}

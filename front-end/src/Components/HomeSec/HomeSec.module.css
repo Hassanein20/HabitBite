@@ -1,0 +1,23 @@
+.Home {
+  background-image: url("../../Assets/Home.webp");
+  background-size: cover;
+  background-position: center;
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
+@media (max-width: 576px) {
+  .Content {
+    width: 70vw !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 992px) {
+  .Content {
+    width: 60vw !important;
+  }
+}
+@media (min-width: 992px) {
+  .Content {
+    width: 50vw !important;
+  }
+}

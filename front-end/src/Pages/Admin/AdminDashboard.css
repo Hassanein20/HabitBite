@@ -1,0 +1,152 @@
+.admin-container {
+  padding: 20px;
+}
+
+.admin-header {
+  margin-bottom: 20px;
+}
+
+.admin-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--color-background);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+.action-buttons .btn {
+  margin-right: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.action-buttons .btn:hover {
+  transform: scale(1.05);
+}
+
+.modal-content {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom-color: var(--color-border);
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top-color: var(--color-border);
+  padding: 1.5rem;
+}
+
+.form-control,
+.input-group-text {
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
+  border-color: var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background-color: var(--color-input-bg);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-primary-rgb), 0.25);
+}
+
+.search-box {
+  margin-bottom: 1.5rem;
+}
+
+.input-group-text {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.pagination .page-item .page-link {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-color: var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.sort-indicator {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(var(--color-primary-rgb), 0.1);
+}
+
+.btn-danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-nav-link {
+  color: var(--color-text) !important;
+  transition: color 0.3s ease;
+}
+
+.admin-nav-link:hover {
+  color: var(--color-primary) !important;
+}
+
+.alert {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .admin-table {
+    font-size: 0.9rem;
+  }
+
+  .action-buttons .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,39 @@
+.Screen {
+  background-image: url(../../Assets/Menu1.webp);
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: calc(100vh );
+  padding-top: 80px;
+  overflow-y: auto;
+}
+
+@media (max-width: 576px) {
+  :root {
+    --card-width: 50vw;
+    --card-height: 60vh;
+  }
+  .Statistics {
+    margin-right: 20vw !important;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+  :root {
+    --card-width: 40vw;
+    --card-height: 65vh;
+  }
+  .Statistics {
+    margin-right: 23vw !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1400px) {
+  :root {
+    --card-width: 30vw;
+    --card-height: 65vh;
+  }
+  .Statistics {
+    margin-right: 30vw !important;
+  }
+}

@@ -1,0 +1,368 @@
+:root {
+  --dietitian-primary: #6D8EE8;
+  --dietitian-primary-light: #90A8F0;
+  --dietitian-primary-dark: #5272CC;
+  
+  --dietitian-secondary: #4ECDC4;
+  --dietitian-accent: #FFB649;
+  --dietitian-error: #FF6B6B;
+  --dietitian-success: #66C27F;
+  
+  --dietitian-background: #1E2233;
+  --dietitian-card-bg: #282C3E;
+  --dietitian-modal-bg: #303448;
+  
+  --dietitian-text: #E8EAED;
+  --dietitian-text-secondary: #B4B9C6;
+  --dietitian-text-tertiary: #8A91A5;
+  
+  --dietitian-border: #3A3F55;
+  --dietitian-hover: rgba(109, 142, 232, 0.15); 
+  --dietitian-selected: rgba(109, 142, 232, 0.25); 
+  --dietitian-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  
+  --transition-standard: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dietitian-dashboard {
+  padding: 24px;
+  background-color: var(--dietitian-background);
+  min-height: 100vh;
+  transition: var(--transition-standard);
+  color: var(--dietitian-text);
+}
+
+.dietitian-dashboard .card {
+  background-color: var(--dietitian-card-bg);
+  border: 1px solid var(--dietitian-border);
+  border-radius: 12px;
+  box-shadow: var(--dietitian-shadow);
+  overflow: hidden;
+  transition: var(--transition-standard);
+  margin-bottom: 24px;
+  transform: translateY(0);
+  color: var(--dietitian-text);
+}
+
+.dietitian-dashboard .card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.dietitian-dashboard .card-header {
+  background: linear-gradient(135deg, var(--dietitian-primary-dark), var(--dietitian-primary));
+  color: white;
+  border-bottom: 1px solid var(--dietitian-border);
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dietitian-dashboard .card-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.dietitian-dashboard table {
+  margin-bottom: 0;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.dietitian-dashboard th {
+  background-color: var(--dietitian-background);
+  color: var(--dietitian-primary-light);
+  font-weight: 600;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--dietitian-primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dietitian-dashboard tbody tr {
+  transition: var(--transition-standard);
+  border-bottom: 1px solid var(--dietitian-border);
+  color: var(--dietitian-text);
+}
+
+.dietitian-dashboard td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.dietitian-dashboard tbody tr:hover {
+  background-color: var(--dietitian-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 5;
+  position: relative;
+}
+
+.dietitian-dashboard .selected-user {
+  background-color: var(--dietitian-selected);
+  position: relative;
+}
+
+.dietitian-dashboard .selected-user::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--dietitian-accent);
+  animation: pulseHighlight 2s infinite;
+  box-shadow: 0 0 10px rgba(255, 182, 73, 0.5);
+}
+
+@keyframes pulseHighlight {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.progress-chart {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--dietitian-card-bg);
+  border-radius: 12px;
+  box-shadow: var(--dietitian-shadow);
+  transition: var(--transition-standard);
+  position: relative;
+  overflow: hidden;
+  color: var(--dietitian-text);
+  border: 1px solid var(--dietitian-border);
+}
+
+.progress-chart:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.progress-chart::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(74,111,165,0.1) 0%, rgba(255,255,255,0) 70%);
+  z-index: 0;
+}
+
+.progress-chart h6 {
+  margin-bottom: 1.25rem;
+  color: var(--dietitian-primary-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.progress-chart h6::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--dietitian-accent);
+  border-radius: 3px;
+}
+
+.dietitian-dashboard .btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: var(--transition-standard);
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dietitian-dashboard .btn-primary {
+  background: linear-gradient(135deg, var(--dietitian-primary), var(--dietitian-primary-dark));
+  border: none;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.dietitian-dashboard .btn-primary:hover {
+  background: linear-gradient(135deg, var(--dietitian-primary-dark), var(--dietitian-primary-dark));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.dietitian-dashboard .btn-secondary {
+  background: var(--dietitian-secondary);
+  border: none;
+  color: #111827;
+  font-weight: 500;
+}
+
+.dietitian-dashboard .btn-secondary:hover {
+  background: var(--dietitian-secondary);
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.dietitian-dashboard .form-control {
+  border-radius: 8px;
+  border: 1px solid var(--dietitian-border);
+  padding: 0.75rem 1rem;
+  transition: var(--transition-standard);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  background-color: var(--dietitian-modal-bg);
+  color: var(--dietitian-text);
+}
+
+.dietitian-dashboard .form-control::placeholder {
+  color: var(--dietitian-text-tertiary);
+  opacity: 0.7;
+}
+
+.dietitian-dashboard .form-control:focus {
+  border-color: var(--dietitian-primary-light);
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.15);
+}
+
+.dietitian-dashboard .modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  border: none;
+  background-color: var(--dietitian-modal-bg);
+  color: var(--dietitian-text);
+}
+
+.dietitian-dashboard .modal-header {
+  background: linear-gradient(135deg, var(--dietitian-primary), var(--dietitian-primary-dark));
+  color: white;
+  border-bottom: none;
+  padding: 1.25rem 1.5rem;
+}
+
+.dietitian-dashboard .modal-footer {
+  border-top: 1px solid var(--dietitian-border);
+  background-color: var(--dietitian-background);
+}
+
+.dietitian-dashboard .glow-effect {
+  position: relative;
+}
+
+.dietitian-dashboard .glow-effect::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(circle at center, var(--dietitian-primary-light) 0%, transparent 70%);
+  opacity: 0.07;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.dietitian-dashboard table {
+  background-color: transparent;
+  color: var(--dietitian-text);
+}
+
+.dietitian-dashboard .chart-container {
+  background-color: var(--dietitian-card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--dietitian-shadow);
+  border: 1px solid var(--dietitian-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.dietitian-dashboard .chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(109, 142, 232, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.dietitian-dashboard .alert {
+  border-radius: 8px;
+  border: none;
+  padding: 1rem 1.25rem;
+}
+
+.dietitian-dashboard .alert-success {
+  background-color: rgba(102, 194, 127, 0.15);
+  color: var(--dietitian-success);
+  border-left: 4px solid var(--dietitian-success);
+}
+
+.dietitian-dashboard .alert-danger {
+  background-color: rgba(255, 107, 107, 0.15);
+  color: var(--dietitian-error);
+  border-left: 4px solid var(--dietitian-error);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dietitian-dashboard .fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  .dietitian-dashboard {
+    padding: 16px;
+  }
+  
+  .dietitian-dashboard table {
+    font-size: 0.85rem;
+  }
+
+  .dietitian-dashboard .btn {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .dietitian-dashboard th {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .dietitian-dashboard td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .progress-chart {
+    padding: 1rem;
+  }
+}

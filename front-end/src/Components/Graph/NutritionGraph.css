@@ -1,0 +1,691 @@
+.nutrition-card {
+  transition: all 0.3s ease-in-out;
+  transform: translateZ(0);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.nutrition-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+}
+
+.graph-title {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  display: inline-block;
+}
+
+.graph-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 40px;
+  height: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.nutrition-card:hover .graph-title::after {
+  width: 100%;
+}
+
+.graph-body {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.loading-container {
+  min-height: 300px;
+}
+
+.pulsing-spinner {
+  color: var(--color-primary) !important;
+  animation: spinner-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes spinner-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+.animate-chart {
+  animation: fade-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.graph-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.chart-glow-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(75, 192, 192, 0.1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: glow-pulse 8s infinite alternate ease-in-out;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.chart-pulse {
+  animation: chart-pulse 1s ease-out;
+}
+
+@keyframes chart-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.calories-line {
+  filter: drop-shadow(0 0 3px rgba(75, 192, 192, 0.5));
+  transition: all 0.3s ease;
+}
+
+.protein-line {
+  filter: drop-shadow(0 0 3px rgba(255, 99, 132, 0.5));
+  transition: all 0.3s ease;
+}
+
+.carbs-line {
+  filter: drop-shadow(0 0 3px rgba(54, 162, 235, 0.5));
+  transition: all 0.3s ease;
+}
+
+.fats-line {
+  filter: drop-shadow(0 0 3px rgba(255, 206, 86, 0.5));
+  transition: all 0.3s ease;
+}
+
+.recharts-line:hover {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)) !important;
+  z-index: 10;
+}
+
+.recharts-area:hover {
+  filter: drop-shadow(0 0 8px rgba(75, 192, 192, 0.7)) !important;
+  z-index: 10;
+}
+
+.goal-line {
+  animation: dash 15s linear infinite;
+  filter: drop-shadow(0 0 2px rgba(75, 192, 192, 0.7));
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.animated-grid {
+  animation: grid-fade 3s infinite alternate ease-in-out;
+}
+
+@keyframes grid-fade {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.today-label {
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--color-primary);
+  animation: today-label-pulse 2s infinite alternate;
+}
+
+@keyframes today-label-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 5px var(--color-primary);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--color-primary);
+  }
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+}
+
+.legend-item:hover {
+  transform: translateY(-2px) scale(1.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.graph-container:hover {
+  transform: translateZ(20px);
+}
+
+@media (max-width: 768px) {
+  .legend-item {
+    margin-bottom: 5px;
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .legend-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.recharts-surface {
+  transform-style: preserve-3d;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.recharts-line-curve {
+  animation: float 4s infinite ease-in-out;
+}
+
+.calories-line .recharts-line-curve {
+  animation-delay: 0s;
+}
+
+.protein-line .recharts-line-curve {
+  animation-delay: 1s;
+}
+
+.carbs-line .recharts-line-curve {
+  animation-delay: 2s;
+}
+
+.fats-line .recharts-line-curve {
+  animation-delay: 3s;
+}
+
+.graph-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+  animation: shine 10s infinite linear;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.chart-responsive-container {
+  position: relative;
+}
+
+.recharts-wrapper {
+  position: relative;
+  overflow: visible !important; 
+}
+
+.custom-tooltip {
+  background-color: rgba(20, 25, 35, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease-out;
+  animation: tooltip-fade-in 0.2s ease-out forwards;
+  min-width: 150px;
+  pointer-events: none;
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip-day {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-primary);
+  text-shadow: 0 0 5px rgba(var(--color-primary-rgb), 0.5);
+  margin-bottom: 8px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tooltip-content p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+.tooltip-label {
+  font-weight: 500;
+  opacity: 0.8;
+  margin-right: 8px;
+}
+
+.tooltip-value {
+  font-weight: 700;
+}
+
+.tooltip-wrapper {
+  z-index: 999;
+}
+
+.chart-pulse {
+  animation: chartPulse 1s ease-in-out;
+}
+
+.chart-glow-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(75, 192, 192, 0.08) 0%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.chart-responsive-container {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes chartPulse {
+  0% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 5px rgba(75, 192, 192, 0.4));
+  }
+  50% {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 0 15px rgba(75, 192, 192, 0.8));
+  }
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 5px rgba(75, 192, 192, 0.4));
+  }
+}
+
+.animate-chart {
+  animation: fadeAndSlideIn 1s ease-out forwards;
+}
+
+@keyframes fadeAndSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulsing-spinner {
+  animation: spinnerPulse 1.5s infinite ease-in-out;
+  color: var(--color-primary, #4bc0c0);
+}
+
+@keyframes spinnerPulse {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.7;
+  }
+}
+
+.animated-grid {
+  animation: fadeInGrid 2s ease-out forwards;
+}
+
+@keyframes fadeInGrid {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.custom-tooltip {
+  background-color: rgba(30, 30, 40, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  min-width: 150px;
+}
+
+.tooltip-day {
+  margin: 0 0 5px 0;
+  font-weight: 600;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tooltip-label {
+  font-weight: 600;
+}
+
+.tooltip-value {
+  float: right;
+  margin-left: 10px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+  transition: all 0.2s ease;
+}
+
+.legend-item:hover {
+  transform: translateY(-2px);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.today-label {
+  font-weight: bold;
+  animation: pulseLabel 2s infinite ease-in-out;
+}
+
+@keyframes pulseLabel {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.goal-line {
+  animation: dashedLineAnim 12s linear infinite;
+}
+
+@keyframes dashedLineAnim {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+.calories-line {
+  animation: glowCalories 4s infinite alternate;
+}
+
+@keyframes glowCalories {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(75, 192, 192, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(75, 192, 192, 0.7));
+  }
+}
+
+.protein-line {
+  animation: glowProtein 4s infinite alternate;
+}
+
+@keyframes glowProtein {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(255, 99, 132, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(255, 99, 132, 0.7));
+  }
+}
+
+.carbs-line {
+  animation: glowCarbs 4s infinite alternate;
+}
+
+@keyframes glowCarbs {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(54, 162, 235, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(54, 162, 235, 0.7));
+  }
+}
+
+.fats-line {
+  animation: glowFats 4s infinite alternate;
+}
+
+@keyframes glowFats {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(255, 206, 86, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(255, 206, 86, 0.7));
+  }
+}
+
+.graph-title {
+  font-weight: 600;
+  color: var(--color-primary, #4bc0c0);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.week-nav-btn {
+  background-color: rgba(var(--calories-color-rgb, 75, 192, 192), 0.1);
+  border-color: var(--calories-color, #4bc0c0);
+  color: var(--calories-color, #4bc0c0);
+  font-weight: 500;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 6px 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.week-nav-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.week-nav-btn:not(:disabled):hover,
+.week-nav-btn:not(:disabled):focus {
+  background-color: var(--calories-color, #4bc0c0);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(var(--calories-color-rgb, 75, 192, 192), 0.3);
+}
+
+.week-nav-btn:not(:disabled):hover::before {
+  left: 100%;
+  animation: shine 1.5s infinite;
+}
+
+.week-nav-btn:disabled {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.week-indicator {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4px 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
